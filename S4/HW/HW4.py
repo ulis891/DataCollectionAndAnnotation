@@ -28,7 +28,7 @@ url = "https://news.mail.ru/"
 ua = UserAgent()
 header = {"UserAgent": ua.chrome}
 session = requests.session()    # что бы маскировать запрос под обычную сессию из браузера
-response = requests.get(url, headers=header)
+response = session.get(url, headers=header)
 dom = html.fromstring(response.text)
 
 #   добываем все ссылки на новости и чистим их от дубликатов
@@ -67,7 +67,7 @@ for item in news_links:
 #   заролняем информацию по заголовкам csv файла
 fieldnames = ["title", "data", "sorce", "url"]
 #   записываем информацию в файл
-with open(os.getcwd() + "news.csv", "w", encoding="UTF-8", newline="") as csvfile:
+with open(os.getcwd() + "/news.csv", "w", encoding="UTF-8", newline="") as csvfile:
     writer = csv.DictWriter(csvfile, dialect="excel", fieldnames=fieldnames)
     writer.writeheader()
     writer.writerows(all_news)

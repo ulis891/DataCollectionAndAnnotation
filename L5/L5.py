@@ -1,0 +1,1 @@
+"https://tradingeconomics.com/country-list/inflation-rate?continent=world"

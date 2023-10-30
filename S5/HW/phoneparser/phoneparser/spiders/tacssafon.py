@@ -21,11 +21,20 @@ class TacssafonSpider(scrapy.Spider):
 
     def vacancy_parse(self, responce: HtmlResponse):
         name = responce.xpath("//h1/text()").get()
-        price = responce.xpath("//div[@xpath='1']//text()").getall()
+        price = responce.xpath("//div[@class='price-product']//strong/text()").get()
         url = responce.url
-        info = responce.xpath("//ul[@class='shop2-color-ext-list']//div")
-        region = info[0]
-        color = info[1]
-        yield PhoneparserItem(name=name, region=region, color=color, price=price, url=url)
+        info = responce.xpath("//ul[@class='shop2-color-ext-list']//div//text()").getall()
+        if len(info) > 4:
+            region = info[1].strip()
+            color = info[3].strip()
+        else:
+            region = None
+            color = info[1].strip()
+        full_info = responce.xpath("//table[@class='shop2-product-params']//td//text()").getall()
+        rom = full_info[2].strip()
+        ram = full_info[3]
+        if "ГБ" not in ram:
+            ram = None
+        print(name, price, url, region, color, ram, rom)
+        yield PhoneparserItem(name=name, region=region, color=color, price=price, ram=ram, rom=rom, url=url)
 
-    pass

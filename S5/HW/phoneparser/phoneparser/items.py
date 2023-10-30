@@ -15,5 +15,4 @@ class PhoneparserItem(scrapy.Item):
     ram = scrapy.Field()
     region = scrapy.Field()
     color = scrapy.Field()
-    _id = scrapy.Field()
     pass

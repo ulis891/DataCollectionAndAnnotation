@@ -35,6 +35,6 @@ class TacssafonSpider(scrapy.Spider):
         ram = full_info[3]
         if "ГБ" not in ram:
             ram = None
-        print(name, price, url, region, color, ram, rom)
+        # print(name, price, url, region, color, ram, rom)
         yield PhoneparserItem(name=name, region=region, color=color, price=price, ram=ram, rom=rom, url=url)
 

@@ -3,6 +3,8 @@
 /S2/HW/data.json
 /L5/tradig_economics/inf.json
 /S4/HW/news.csv
-/L5/Конспект. Scrapy.pdf
-/L1/Конспект 1. Основы клиент-серверного взаимодействия.pdf
-/L5/Презентация. Scrapy.pdf
+#/L5/Конспект. Scrapy.pdf
+#/L1/Конспект 1. Основы клиент-серверного взаимодействия.pdf
+#/L5/Презентация. Scrapy.pdf
+
+*.pdf

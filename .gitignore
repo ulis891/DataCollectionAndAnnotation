@@ -1,10 +1,6 @@
-/L1/01_Презентация. Основы клиент-серверного взаимодействия. Парсинг API..pdf
+
 /S3/crash-data.json
 /S2/HW/data.json
 /L5/tradig_economics/inf.json
 /S4/HW/news.csv
-#/L5/Конспект. Scrapy.pdf
-#/L1/Конспект 1. Основы клиент-серверного взаимодействия.pdf
-#/L5/Презентация. Scrapy.pdf
-
-#*.pdf
+*.pdf

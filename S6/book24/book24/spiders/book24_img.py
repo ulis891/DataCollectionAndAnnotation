@@ -2,7 +2,7 @@ import scrapy
 from scrapy.loader import ItemLoader
 from scrapy.http import HtmlResponse
 
-from S6.book24.book24.items import Book24Item
+from DataCollectionAndAnnotation.S6.book24.book24.items import Book24Item
 
 
 class Book24ImgSpider(scrapy.Spider):

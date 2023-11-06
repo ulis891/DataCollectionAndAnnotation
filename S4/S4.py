@@ -1,9 +1,10 @@
-from lxml import html
-import requests
 from pprint import pprint
 
-header = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36'}
+from lxml import html
+import requests
+from fake_useragent import UserAgent as ua
 
+header = {ua.chrome}
 url = 'https://www.ebay.com'
 response = requests.get(url + '/b/Fishing-Equipment-Supplies/1492/bn_1851047', headers=header)
 dom = html.fromstring(response.text)
@@ -25,3 +26,4 @@ for item in items:
     items_list.append(item_info)
 
 pprint(items_list)
+

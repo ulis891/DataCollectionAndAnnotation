@@ -12,3 +12,5 @@ class UnsplashItem(scrapy.Item):
     # define the fields for your item here like:
     url = scrapy.Field()
     title = scrapy.Field()
+    tags = scrapy.Field()
+    photos = scrapy.Field()

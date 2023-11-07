@@ -23,6 +23,7 @@ class TacssafonSpider(scrapy.Spider):
         name = responce.xpath("//h1/text()").get()
         price = responce.xpath("//div[@class='price-product']//strong/text()").get()
         url = responce.url
+        print(name,url)
         info = responce.xpath("//ul[@class='shop2-color-ext-list']//div//text()").getall()
         if len(info) > 4:
             region = info[1].strip()

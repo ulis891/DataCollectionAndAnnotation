@@ -13,7 +13,7 @@ BOT_NAME = 'unsplash'
 
 SPIDER_MODULES = ['unsplash.spiders']
 NEWSPIDER_MODULE = 'unsplash.spiders'
-# IMAGES_STORE = 'photos'
+IMAGES_STORE = 'photos'
 
 LOG_ENABLED = True
 LOG_LEVEL = "DEBUG"
@@ -69,8 +69,9 @@ COOKIES_ENABLED = True
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
     'unsplash.pipelines.UnsplashPipeline': 300,
+    'unsplash.pipelines.PhotosPipeline': 100,
 }
-# 'unsplash.pipelines.PhotosPipeline': 100,
+
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html

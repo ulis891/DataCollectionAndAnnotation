@@ -5,3 +5,5 @@
 /S4/HW/news.csv
 *.pdf
 /.idea/Data collection and markup.iml
+*.jpg
+*.csv

@@ -13,23 +13,18 @@ import scrapy
 class UnsplashPipeline(object):
     def process_item(self, item, spider):
         with open(os.getcwd() + "/photos_info.csv", "a", encoding="UTF-8", newline="") as csvfile:
-            names = ["tite", "tags", "url"]
             writer = csv.writer(csvfile, dialect="excel")
-            writer.writerow([item['title'][0], item['tags'], item['url'][0]])
+            if os.stat("photos_info.csv").st_size == 0:
+                writer.writerow(['title', 'tags', 'url'])
+            writer.writerow([item['title'], item['tags'], item['url']])
 
 
 class PhotosPipeline(ImagesPipeline):
     def get_media_requests(self, item, info):
-        yield scrapy.Request(item['photos'][0])
-        # if item['photos']:
-        #     for img_url in item['photos']:
-        #         try:
-        #             yield scrapy.Request(img_url)
-        #         except Exception as e:
-        #             print(e)
+        yield scrapy.Request(item['photos'])
+
 
     def item_completed(self, results, item, info):
-        print()
         if results:
             item['photos'] = [itm[1] for itm in results if itm[0]]
         return item

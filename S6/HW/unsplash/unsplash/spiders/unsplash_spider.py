@@ -3,7 +3,6 @@ import requests
 import scrapy
 from scrapy.loader import ItemLoader
 from scrapy.http import HtmlResponse
-
 from S6.HW.unsplash.unsplash.items import UnsplashItem
 
 

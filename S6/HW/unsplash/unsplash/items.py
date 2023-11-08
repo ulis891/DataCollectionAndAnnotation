@@ -6,11 +6,12 @@
 # https://docs.scrapy.org/en/latest/topics/items.html
 
 import scrapy
+from itemloaders.processors import TakeFirst
 
 
 class UnsplashItem(scrapy.Item):
     # define the fields for your item here like:
-    url = scrapy.Field()
-    title = scrapy.Field()
+    url = scrapy.Field(output_processor=TakeFirst())
+    title = scrapy.Field(output_processor=TakeFirst())
     tags = scrapy.Field()
-    photos = scrapy.Field()
+    photos = scrapy.Field(output_processor=TakeFirst())

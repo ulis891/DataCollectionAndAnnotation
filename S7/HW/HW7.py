@@ -31,19 +31,38 @@ input.send_keys(Keys.ENTER)
 #   ожидаем загрузки элемента с колличеством писем
 wait = WebDriverWait(driver, 30)
 cards = wait.until(EC.presence_of_all_elements_located((By.XPATH, '//span[@class="badge__text"]')))
-mails_count = int(driver.find_element(By.XPATH, '//span[@class="badge__text"]').text)
+
+mails_count_all = int(driver.find_element(By.XPATH, '//a[@class="nav__item js-shortcut nav__item_active '
+                                                    'nav__item_shortcut nav__item_child-level_0"]').get_attribute(
+                                                    'title').split(" ")[1])
 all_mails = set()
-print()
 actions = ActionChains(driver)
+print()
 
-while len(all_mails) < mails_count:
+while len(all_mails) < mails_count_all:
     mails = driver.find_elements(By.XPATH, '//div[@class="ReactVirtualized__Grid__innerScrollContainer"]/a')
+    time.sleep(0.5)
     for mail in mails:
-        all_mails.add(mail.get_attribute('href'))
-    print(len(all_mails))
-    driver.execute_script(
-        'document.getElementsByClassName("ReactVirtualized__Grid__innerScrollContainer")[0].scrollIntoView(0,5)')
+        try:
+            all_mails.add(mail.get_attribute('href'))
+        except Exception:
+            print(mail)
+            print()
+            continue
 
+    lust_mail = mails[-1].get_attribute('data-id')
+    print(len(all_mails))
+    driver.execute_script(f'document.querySelector("[data-id=\'{lust_mail}\']").scrollIntoView(false)')
+
+    print()
+
+for link in all_mails:
+    driver.get(link)
+    print()
+    info_from = wait.until(EC.presence_of_all_elements_located((By.CLASS_NAME, 'letter-contact')))
+    info_from = info_from[0].get_attribute('title')
+    # info_from = driver.find_element(By.CLASS_NAME, 'letter-contact').get_attribute('title')
+    print(info_from)
     print()
 
 
